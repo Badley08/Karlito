@@ -38,3 +38,11 @@ Ce portfolio peut être déployé sur :
 ## 📄 License
 
 © 2025 Luberisse Karl Brad - Tous droits réservés
+
+**Interdiction de copier, modifier ou redistribuer ce code sans autorisation.**
+
+Pour toute utilisation, contactez : [karlluberisse1308@gmail.com](mailto:karlluberisse1308@gmail.com)
+
+---
+
+*Ce portfolio est la propriété intellectuelle de Luberisse Karl Brad (Karlito)*
