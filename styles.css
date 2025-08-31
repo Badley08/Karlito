@@ -125,6 +125,7 @@ body {
     object-fit: cover;
     margin-bottom: 15px;
     border: 3px solid;
+    transition: all 0.3s ease;
 }
 
 .sidebar-nav {
@@ -170,6 +171,7 @@ body {
     gap: 8px;
     border: 2px solid transparent;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .theme-btn:hover {
@@ -259,6 +261,7 @@ body {
     transition: all 0.3s ease;
     padding: 5px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .language-selector a:hover {
@@ -310,6 +313,14 @@ body {
 
 .floating-btn:hover {
     transform: scale(1.1);
+}
+
+.scroll-top {
+    display: none;
+}
+
+.scroll-top.visible {
+    display: flex;
 }
 
 /* ===== VISIT COUNTER ===== */
@@ -541,26 +552,37 @@ body {
 }
 
 /* ===== CONTACT ===== */
-.contact-form {
+.contact-info {
     max-width: 600px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    text-align: center;
 }
 
-.contact-form input,
-.contact-form textarea {
-    padding: 15px;
-    border: none;
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
     border-radius: 10px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
-.contact-form textarea {
-    min-height: 150px;
-    resize: vertical;
+.contact-item i {
+    font-size: 1.5rem;
+}
+
+.contact-item a {
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
 }
 
 /* ===== FOOTER ===== */
@@ -656,6 +678,16 @@ footer {
     .quick-reply {
         font-size: 0.7rem;
         padding: 6px 10px;
+    }
+    
+    .contact-info {
+        gap: 15px;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
     }
 }
 

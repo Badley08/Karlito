@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luberisse Karl Brad | Karlito - Développeur Full Stack</title>
+    <meta name="description" content="Portfolio de Karlito (Luberisse Karl Brad), développeur Full Stack de 16 ans passionné par la technologie et l'innovation numérique.">
+    <meta name="keywords" content="développeur, full stack, karlito, programmation, web, python, javascript, linux, portfolio">
+    <meta name="author" content="Luberisse Karl Brad">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Luberisse Karl Brad | Karlito - Développeur Full Stack">
+    <meta property="og:description" content="Portfolio de Karlito (Luberisse Karl Brad), développeur Full Stack de 16 ans passionné par la technologie et l'innovation numérique.">
+    <meta property="og:image" content="assets/karlito.jpg">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Luberisse Karl Brad | Karlito - Développeur Full Stack">
+    <meta name="twitter:description" content="Portfolio de Karlito (Luberisse Karl Brad), développeur Full Stack de 16 ans passionné par la technologie et l'innovation numérique.">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="themes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="assets/karlito.jpg" type="image/jpeg" size="32x32">
+    <link rel="icon" href="karlito.jpg" type="image/jpeg" size="32x32">
+</head>
+<body class="theme-dark">
+
+<!-- Menu Hamburger -->
+<div class="mobile-menu-toggle" id="menuToggle">
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+<!-- Menu Latéral -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <img src="karlito.jpg" alt="Karlito" class="logo">
+        <h2 id="navName">Karlito</h2>
+    </div>
+    
+    <nav class="sidebar-nav">
+        <a href="#about"><i class="fas fa-user"></i> <span id="navAbout">À propos</span></a>
+        <a href="#skills"><i class="fas fa-code"></i> <span id="navSkills">Compétences clés</span></a>
+        <a href="#projects"><i class="fas fa-project-diagram"></i> <span id="navProjects">Mes Projets</span></a>
+        <a href="#contact"><i class="fas fa-envelope"></i> <span id="navContact">Contactez-moi</span></a>
+        <a href="https://badley08.github.io/LinkNest" target="_blank"><i class="fas fa-globe"></i> <span id="navSites">Tous mes sites</span></a>
+    </nav>
+    
+    <div class="sidebar-controls">
+        <div class="theme-selector">
+            <h4 id="themeLabel">Thème:</h4>
+            <a href="#" class="theme-btn active" data-theme="dark">
+                <span class="theme-logo dark"></span>Dark
+            </a>
+            <a href="#" class="theme-btn" data-theme="light">
+                <span class="theme-logo light"></span>Light
+            </a>
+            <a href="#" class="theme-btn" data-theme="glass">
+                <span class="theme-logo glass"></span>Glass
+            </a>
+            <a href="#" class="theme-btn" data-theme="neon">
+                <span class="theme-logo neon"></span>Neon
+            </a>
+            <a href="#" class="theme-btn" data-theme="hacker">
+                <span class="theme-logo hacker"></span>Hacker
+            </a>
+            <a href="#" class="theme-btn" data-theme="vintage">
+                <span class="theme-logo vintage"></span>Vintage
+            </a>
+            <a href="#" class="theme-btn" data-theme="royal">
+                <span class="theme-logo royal"></span>Royal
+            </a>
+        </div>
+        
+        <div class="language-selector">
+            <h4 id="langLabel">Langue:</h4>
+            <a href="#" data-lang="fr" class="active" title="Français">🇫🇷</a>
+            <a href="#" data-lang="en" title="English">🇺🇸</a>
+            <a href="#" data-lang="es" title="Español">🇪🇸</a>
+            <a href="#" data-lang="pt" title="Português">🇵🇹</a>
+        </div>
+    </div>
+</div>
+
+<!-- Overlay pour fermer le menu -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Boutons flottants -->
+<div class="floating-buttons">
+    <!-- Bouton Chatbot Paxel -->
+    <button class="floating-btn chatbot-toggle" id="chatbotToggle" title="Chatbot Paxel">
+        <i class="fas fa-robot"></i>
+    </button>
+    
+    <!-- Bouton Retour en Haut -->
+    <button class="floating-btn scroll-top" id="scrollTop" title="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</div>
+
+<!-- Visit Counter -->
+<div class="visit-counter">
+    <i class="fas fa-eye"></i> 
+    <span id="visitCount">0</span> 
+    <span id="visitsText">visites</span>
+</div>
+
+<!-- Header -->
+<header class="hero-section">
+    <div class="hero-content">
+        <img src="karlito.jpg" alt="Karlito" class="profile-pic">
+        <h1><span id="heroHello">Salut, je suis</span> <span class="highlight" id="heroName">Karlito</span></h1>
+        <p class="typing-text" id="heroSubtitle">Développeur Full Stack | Geek du Code | Créateur d'Apps</p>
+        <div class="hero-buttons">
+            <a href="#about" class="btn-primary" id="heroAboutBtn">À propos</a>
+            <a href="#projects" class="btn-secondary" id="heroProjectsBtn">Projets</a>
+        </div>
+    </div>
+</header>
+
+<!-- About Section -->
+<section id="about" class="section">
+    <div class="container">
+        <h2 class="section-title" id="aboutTitle">À propos de moi</h2>
+        <div class="about-content">
+            <img src="karlito.jpg" alt="Karlito" class="about-pic">
+            <div class="about-text">
+                <p id="aboutText1">Je suis Luberisse Karl Brad, plus connu sous le nom de Karlito, j'ai 16 ans et je suis un jeune passionné de technologie, programmation et innovation numérique.</p>
+                <p id="aboutText2">Je développe des sites web Full Stack avec Python, JavaScript, HTML/CSS, et j'adore les environnements Linux.</p>
+                <p id="aboutText3">Mon objectif ? Devenir un développeur complet, capable de concevoir des applications performantes, intuitives et élégantes.</p>
+                <div class="age-info">
+                    <i class="fas fa-birthday-cake"></i>
+                    <span id="ageLabel">Âge</span>: 16 <span id="yearsLabel">ans</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="section skills-section">
+    <div class="container">
+        <h2 class="section-title" id="skillsTitle">Compétences clés</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3><i class="fas fa-code"></i> <span id="webDevTitle">Développement Web</span></h3>
+                <ul>
+                    <li>HTML5, CSS3, JavaScript</li>
+                    <li>Python (Flask, Django)</li>
+                    <li>APIs & Backend</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fab fa-linux"></i> <span id="linuxTitle">Linux & Terminal</span></h3>
+                <ul>
+                    <li>Arch Linux, Ubuntu</li>
+                    <li>Terminal & Bash</li>
+                    <li>Server Management</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fas fa-paint-brush"></i> <span id="designTitle">UX/UI Design</span></h3>
+                <ul>
+                    <li>Responsive Design</li>
+                    <li>Interactive Interfaces</li>
+                    <li>User Experience</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fas fa-project-diagram"></i> <span id="projectsSkillTitle">Projets</span></h3>
+                <ul>
+                    <li>Educational Platforms</li>
+                    <li>Online Converters</li>
+                    <li>Full Stack Apps</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="section projects-section">
+    <div class="container">
+        <h2 class="section-title" id="projectsMainTitle">Mes Projets</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3><i class="fas fa-graduation-cap"></i> <span id="project1Title">Plateforme Éducative</span></h3>
+                <p id="project1Desc">Quiz interactifs, suivi de progression, interface fluide.</p>
+                <small>HTML, CSS, JS, Python Flask</small>
+            </div>
+            <div class="project-card">
+                <h3><i class="fas fa-exchange-alt"></i> <span id="project2Title">Convertisseur d'Unités</span></h3>
+                <p id="project2Desc">Température, devise, poids — tout en un seul outil.</p>
+                <small>JavaScript, CSS Animations</small>
+            </div>
+            <div class="project-card">
+                <h3><i class="fas fa-chart-line"></i> <span id="project3Title">Dashboard Statistique</span></h3>
+                <p id="project3Desc">Visualisation de données en temps réel.</p>
+                <small>Chart.js, Flask</small>
+            </div>
+            <div class="project-card">
+                <h3><i class="fas fa-users"></i> <span id="project4Title">Mini-Réseau Social</span></h3>
+                <p id="project4Desc">Authentification, posts, gestion d'utilisateurs.</p>
+                <small>Python, SQLite, REST API</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="section contact-section">
+    <div class="container">
+        <h2 class="section-title" id="contactTitle">Contactez-moi</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:karlluberisse1308@gmail.com">karlluberisse1308@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-github"></i>
+                <a href="https://github.com/badley08" target="_blank">github.com/badley08</a>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-globe"></i>
+                <a href="https://badley08.github.io/LinkNest" target="_blank">Tous mes projets</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Chatbot Paxel -->
+<div class="chatbot" id="chatbot">
+    <div class="chatbot-header">
+        <img src="karlito.jpg" alt="Paxel" class="chatbot-logo">
+        <span class="chatbot-title" id="chatbotTitle">Paxel - Le chatbot pacifique</span>
+        <button class="chatbot-close" id="closeChatbot">×</button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot">
+            <span id="chatbotWelcome">Salut ! Je suis Paxel, le chatbot le plus pacifique du monde ! Pose-moi des questions sur Karlito ! 🤖</span>
+        </div>
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="userMessage" placeholder="Écris ton message...">
+        <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+    </div>
+    <div class="quick-replies" id="quickReplies"></div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Luberisse Karl Brad. <span id="rightsText">Tous droits réservés.</span></p>
+        <div class="social-links">
+            <a href="mailto:karlluberisse1308@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/badley08" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/karl" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

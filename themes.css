@@ -1,18 +1,3 @@
-/* ===== BASE STYLES ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Roboto Mono', monospace;
-    line-height: 1.6;
-    transition: all 0.3s ease;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
 /* ===== DARK THEME (DEFAULT) ===== */
 .theme-dark {
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
@@ -112,15 +97,69 @@ body {
     border: 1px solid #00ffff;
 }
 
-.theme-dark .contact-form input,
-.theme-dark .contact-form textarea {
+.theme-dark .contact-item {
+    background: rgba(30, 30, 60, 0.7);
+    border: 1px solid #4a4a8a;
+}
+
+.theme-dark .contact-item a {
+    color: #00ffff;
+}
+
+.theme-dark .contact-item:hover {
+    background: rgba(74, 74, 138, 0.8);
+}
+
+.theme-dark .social-links a {
+    color: #00ffff;
+}
+
+.theme-dark .chatbot {
+    background: rgba(15, 12, 41, 0.95);
+    border: 1px solid #4a4a8a;
+}
+
+.theme-dark .chatbot-header {
+    background: rgba(45, 45, 93, 0.8);
+    border-bottom: 1px solid #4a4a8a;
+}
+
+.theme-dark .chatbot-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-dark .message.bot {
+    background: rgba(45, 45, 93, 0.7);
+    color: #a0a0ff;
+}
+
+.theme-dark .message.user {
+    background: #00ffff;
+    color: #000000;
+}
+
+.theme-dark .chatbot-input {
+    background: rgba(45, 45, 93, 0.8);
+    border-top: 1px solid #4a4a8a;
+}
+
+.theme-dark .chatbot-input input {
     background: rgba(30, 30, 60, 0.7);
     color: #e0e0ff;
     border: 1px solid #4a4a8a;
 }
 
-.theme-dark .social-links a {
+.theme-dark .chatbot-input button {
     color: #00ffff;
+}
+
+.theme-dark .chatbot-input button:hover {
+    background: rgba(0, 255, 255, 0.1);
+}
+
+.theme-dark .quick-replies {
+    border-color: #4a4a8a;
+    background: rgba(45, 45, 93, 0.8);
 }
 
 /* ===== LIGHT THEME ===== */
@@ -217,25 +256,75 @@ body {
     border: 1px solid #007bff;
 }
 
-.theme-light .contact-form input,
-.theme-light .contact-form textarea {
-    background: #ffffff;
-    color: #333333;
-    border: 1px solid #ced4da;
+.theme-light .contact-item {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.theme-light .contact-item a {
+    color: #007bff;
+}
+
+.theme-light .contact-item:hover {
+    background: rgba(0, 123, 255, 0.1);
 }
 
 .theme-light .social-links a {
     color: #007bff;
 }
 
+.theme-light .chatbot {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+}
+
+.theme-light .chatbot-header {
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.theme-light .chatbot-close:hover {
+    background: #e9ecef;
+}
+
+.theme-light .message.bot {
+    background: #e9ecef;
+    color: #495057;
+}
+
+.theme-light .message.user {
+    background: #007bff;
+    color: #ffffff;
+}
+
+.theme-light .chatbot-input {
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+.theme-light .chatbot-input input {
+    background: #ffffff;
+    color: #333333;
+    border: 1px solid #ced4da;
+}
+
+.theme-light .chatbot-input button {
+    color: #007bff;
+}
+
+.theme-light .chatbot-input button:hover {
+    background: #e9ecef;
+}
+
+.theme-light .quick-replies {
+    border-color: #dee2e6;
+    background: #f8f9fa;
+}
+
 /* ===== GLASSMORPHISM THEME ===== */
 .theme-glass {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: #ffffff;
-}
-
-.theme-glass body {
-    background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
 .theme-glass .sidebar {
@@ -334,16 +423,52 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.theme-glass .contact-form input,
-.theme-glass .contact-form textarea {
+.theme-glass .contact-item {
     background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-glass .contact-item a {
+    color: #ffffff;
+}
+
+.theme-glass .contact-item:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .theme-glass .social-links a {
     color: #ffffff;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.theme-glass .chatbot {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.theme-glass .chatbot-header {
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-glass .message.bot {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-glass .message.user {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.theme-glass .chatbot-input {
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-glass .chatbot-input input {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* ===== NEON THEME ===== */
@@ -457,17 +582,55 @@ body {
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
 }
 
-.theme-neon .contact-form input,
-.theme-neon .contact-form textarea {
+.theme-neon .contact-item {
     background: #001100;
-    color: #00ff00;
     border: 1px solid #00ff00;
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.1);
+}
+
+.theme-neon .contact-item a {
+    color: #00ff00;
+}
+
+.theme-neon .contact-item:hover {
+    background: #002200;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
 }
 
 .theme-neon .social-links a {
     color: #00ff00;
     text-shadow: 0 0 5px #00ff00;
+}
+
+.theme-neon .chatbot {
+    background: #001100;
+    border: 1px solid #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.theme-neon .chatbot-header {
+    background: #000000;
+    border-bottom: 1px solid #00ff00;
+}
+
+.theme-neon .message.bot {
+    background: #001100;
+    border: 1px solid #00ff00;
+}
+
+.theme-neon .message.user {
+    background: #00ff00;
+    color: #000000;
+}
+
+.theme-neon .chatbot-input {
+    background: #000000;
+    border-top: 1px solid #00ff00;
+}
+
+.theme-neon .chatbot-input input {
+    background: #001100;
+    color: #00ff00;
+    border: 1px solid #00ff00;
 }
 
 /* ===== HACKER THEME ===== */
@@ -579,12 +742,13 @@ body {
     border: 1px solid #00ff00;
 }
 
-.theme-hacker .contact-form input,
-.theme-hacker .contact-form textarea {
+.theme-hacker .contact-item {
     background: #001100;
-    color: #00ff00;
     border: 1px solid #00ff00;
-    font-family: 'Courier New', monospace;
+}
+
+.theme-hacker .contact-item a {
+    color: #00ff00;
 }
 
 .theme-hacker .social-links a {
@@ -690,15 +854,52 @@ body {
     border: 1px solid #8b4513;
 }
 
-.theme-vintage .contact-form input,
-.theme-vintage .contact-form textarea {
+.theme-vintage .contact-item {
     background: #f5deb3;
-    color: #8b4513;
     border: 1px solid #8b4513;
+}
+
+.theme-vintage .contact-item a {
+    color: #8b4513;
+}
+
+.theme-vintage .contact-item:hover {
+    background: #d2b48c;
 }
 
 .theme-vintage .social-links a {
     color: #8b4513;
+}
+
+.theme-vintage .chatbot {
+    background: #f5deb3;
+    border: 1px solid #8b4513;
+}
+
+.theme-vintage .chatbot-header {
+    background: #d2b48c;
+    border-bottom: 1px solid #8b4513;
+}
+
+.theme-vintage .message.bot {
+    background: #d2b48c;
+    color: #8b4513;
+}
+
+.theme-vintage .message.user {
+    background: #8b4513;
+    color: #f5deb3;
+}
+
+.theme-vintage .chatbot-input {
+    background: #d2b48c;
+    border-top: 1px solid #8b4513;
+}
+
+.theme-vintage .chatbot-input input {
+    background: #f5deb3;
+    color: #8b4513;
+    border: 1px solid #8b4513;
 }
 
 /* ===== ROYAL THEME ===== */
@@ -800,14 +1001,60 @@ body {
     border: 1px solid #ffd700;
 }
 
-.theme-royal .contact-form input,
-.theme-royal .contact-form textarea {
+.theme-royal .contact-item {
     background: rgba(75, 0, 130, 0.7);
-    color: #ffd700;
     border: 1px solid #ffd700;
+}
+
+.theme-royal .contact-item a {
+    color: #ffd700;
+}
+
+.theme-royal .contact-item:hover {
+    background: rgba(139, 69, 162, 0.8);
 }
 
 .theme-royal .social-links a {
     color: #ffd700;
     text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.theme-royal .chatbot {
+    background: rgba(75, 0, 130, 0.9);
+    border: 1px solid #ffd700;
+}
+
+.theme-royal .chatbot-header {
+    background: rgba(75, 0, 130, 0.8);
+    border-bottom: 1px solid #ffd700;
+}
+
+.theme-royal .message.bot {
+    background: rgba(75, 0, 130, 0.7);
+    color: #ffd700;
+}
+
+.theme-royal .message.user {
+    background: #ffd700;
+    color: #4b0082;
+}
+
+.theme-royal .chatbot-input {
+    background: rgba(75, 0, 130, 0.8);
+    border-top: 1px solid #ffd700;
+}
+
+.theme-royal .chatbot-input input {
+    background: rgba(75, 0, 130, 0.7);
+    color: #ffd700;
+    border: 1px solid #ffd700;
+}
+
+.theme-royal .chatbot-input button {
+    color: #ffd700;
+}
+
+.theme-royal .quick-replies {
+    border-color: #ffd700;
+    background: rgba(75, 0, 130, 0.8);
 }
