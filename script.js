@@ -3,6 +3,7 @@ let currentTheme = 'dark';
 let currentLang = 'fr';
 let chatHistory = [];
 let visitCount = 0;
+let typingAnimation = null; // Variable pour contrôler l'animation typing
 
 // Traductions pour toutes les langues
 const translations = {
@@ -217,7 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initVisitCounter();
     initThemeSwitching();
     initLanguageSwitching();
-    initTypingEffect();
     initScrollTop();
     initMobileMenu();
     initChatbot();
@@ -228,28 +228,114 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Charger les paramètres sauvegardés
     loadSavedSettings();
+    
+    // Lancer l'animation typing après un petit délai
+    setTimeout(() => {
+        initTypingEffect();
+    }, 500);
 });
 
-// Compteur de visites (localStorage simulé en mémoire)
+// Compteur de visites VRAIMENT persistant avec simulation de localStorage
 function initVisitCounter() {
-    // Simulation d'un compteur de visites
-    visitCount = Math.floor(Math.random() * 1000) + 100;
+    // Créer un identifiant unique pour le navigateur
+    const browserId = getBrowserFingerprint();
+    const storageKey = `portfolio_visits_${browserId}`;
+    const sessionKey = `portfolio_session_${browserId}`;
+    
+    // Simuler localStorage avec des cookies ou utiliser une méthode alternative
+    const getStoredValue = (key, defaultValue) => {
+        // Essayer de récupérer depuis les cookies
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            const [name, value] = cookie.trim().split('=');
+            if (name === key) {
+                return parseInt(value) || defaultValue;
+            }
+        }
+        return defaultValue;
+    };
+    
+    const setStoredValue = (key, value, days = 365) => {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = `${key}=${value}; expires=${date.toUTCString()}; path=/`;
+    };
+    
+    const currentTime = Date.now();
+    const lastSession = getStoredValue(sessionKey, 0);
+    
+    // Si plus d'1 heure depuis la dernière session, considérer comme nouvelle visite
+    if (currentTime - lastSession > 3600000) { // 1 heure
+        visitCount = getStoredValue(storageKey, Math.floor(Math.random() * 200) + 100);
+        visitCount++;
+        setStoredValue(storageKey, visitCount);
+        setStoredValue(sessionKey, currentTime);
+    } else {
+        // Récupérer le compteur existant sans incrémenter
+        visitCount = getStoredValue(storageKey, Math.floor(Math.random() * 200) + 100);
+    }
+    
     updateVisitDisplay();
     
-    // Incrémenter le compteur toutes les 5 minutes (simulation)
+    // Simulation d'autres visiteurs (très occasionnellement)
     setInterval(() => {
-        if (Math.random() > 0.7) { // 30% de chance d'incrémenter
+        if (Math.random() > 0.95) { // 5% de chance seulement
             visitCount++;
+            setStoredValue(storageKey, visitCount);
             updateVisitDisplay();
         }
-    }, 300000); // 5 minutes
+    }, 120000); // Toutes les 2 minutes
+}
+
+function getBrowserFingerprint() {
+    // Identifiant plus stable basé sur les caractéristiques du navigateur
+    const fingerprint = [
+        navigator.userAgent,
+        navigator.language,
+        screen.width + 'x' + screen.height,
+        new Date().getTimezoneOffset(),
+        navigator.platform,
+        navigator.cookieEnabled
+    ].join('|');
+    
+    // Créer un hash simple
+    let hash = 0;
+    for (let i = 0; i < fingerprint.length; i++) {
+        const char = fingerprint.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash).toString(16);
 }
 
 function updateVisitDisplay() {
     const visitCountEl = document.getElementById('visitCount');
     if (visitCountEl) {
-        visitCountEl.textContent = visitCount;
+        // Animation du nombre
+        const currentDisplayed = parseInt(visitCountEl.textContent) || 0;
+        if (currentDisplayed !== visitCount) {
+            animateNumber(visitCountEl, currentDisplayed, visitCount, 500);
+        }
     }
+}
+
+function animateNumber(element, start, end, duration) {
+    const startTime = performance.now();
+    const difference = end - start;
+    
+    function updateNumber(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const currentValue = Math.floor(start + (difference * progress));
+        element.textContent = currentValue;
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+        }
+    }
+    
+    requestAnimationFrame(updateNumber);
 }
 
 // Changement de thème
@@ -452,28 +538,60 @@ function updateTexts(t) {
     const scrollTop = document.getElementById('scrollTop');
     if (scrollTop) scrollTop.title = t.back_to_top;
     
-    // Relancer l'effet de frappe pour le sous-titre
-    setTimeout(initTypingEffect, 100);
+    // Relancer l'effet de frappe pour le sous-titre avec le nouveau texte
+    setTimeout(() => {
+        initTypingEffect();
+    }, 100);
 }
 
-// Effet de frappe
+// Effet de frappe CORRIGÉ
 function initTypingEffect() {
     const typingText = document.querySelector('.typing-text');
-    if (typingText) {
-        const text = typingText.textContent;
-        typingText.textContent = '';
-        typingText.style.width = '0';
-        
-        let i = 0;
-        function type() {
-            if (i < text.length) {
-                typingText.textContent += text.charAt(i);
-                i++;
-                setTimeout(type, 70);
-            }
-        }
-        setTimeout(type, 500);
+    if (!typingText) return;
+    
+    // Arrêter l'animation précédente si elle existe
+    if (typingAnimation) {
+        clearTimeout(typingAnimation);
+        typingAnimation = null;
     }
+    
+    // Récupérer le texte actuel selon la langue
+    const currentTranslation = translations[currentLang] || translations.fr;
+    const text = currentTranslation.subtitle;
+    
+    // Réinitialiser complètement l'élément ET les classes CSS
+    typingText.className = 'typing-text-active'; // Nouvelle classe
+    typingText.style.animation = 'none';
+    typingText.style.borderRight = '2px solid currentColor';
+    typingText.style.whiteSpace = 'nowrap';
+    typingText.style.overflow = 'hidden';
+    typingText.style.width = 'auto';
+    typingText.textContent = '';
+    
+    // Forcer un reflow
+    typingText.offsetWidth;
+    
+    let currentIndex = 0;
+    
+    function typeCharacter() {
+        if (currentIndex < text.length) {
+            typingText.textContent = text.substring(0, currentIndex + 1);
+            currentIndex++;
+            typingAnimation = setTimeout(typeCharacter, 80);
+        } else {
+            // Animation terminée, faire clignoter le curseur
+            setTimeout(() => {
+                if (typingText) {
+                    typingText.style.animation = 'blink-caret 1s step-end infinite';
+                }
+            }, 500);
+        }
+    }
+    
+    // Commencer l'animation après un court délai
+    typingAnimation = setTimeout(() => {
+        typeCharacter();
+    }, 300);
 }
 
 // Bouton retour en haut
@@ -775,31 +893,40 @@ function initSmoothScroll() {
     });
 }
 
-// Sauvegarder les paramètres en mémoire (simulation localStorage)
+// Sauvegarder les paramètres en mémoire (simulation localStorage persistant)
 let savedSettings = {
     theme: 'dark',
     language: 'fr',
-    visits: 0
+    visits: 0,
+    lastVisit: 0
 };
 
 function saveSettings() {
     savedSettings.theme = currentTheme;
     savedSettings.language = currentLang;
     savedSettings.visits = visitCount;
+    savedSettings.lastVisit = Date.now();
+    
+    // Sauvegarder dans le contexte global pour la persistance
+    if (window.portfolioVisitorData) {
+        window.portfolioVisitorData.set('userSettings', savedSettings);
+    }
 }
 
 function loadSavedSettings() {
-    currentTheme = savedSettings.theme;
-    currentLang = savedSettings.language;
-    visitCount = savedSettings.visits || Math.floor(Math.random() * 1000) + 100;
+    // Récupérer les paramètres sauvegardés
+    if (window.portfolioVisitorData && window.portfolioVisitorData.has('userSettings')) {
+        savedSettings = window.portfolioVisitorData.get('userSettings');
+    }
+    
+    currentTheme = savedSettings.theme || 'dark';
+    currentLang = savedSettings.language || 'fr';
     
     // Appliquer le thème
     changeTheme(currentTheme);
     
     // Appliquer la langue
     changeLanguage(currentLang);
-    
-    updateVisitDisplay();
 }
 
 // Animations au scroll
@@ -862,6 +989,30 @@ style.textContent = `
     @keyframes float {
         0% { transform: translateY(100vh) rotate(0deg); }
         100% { transform: translateY(-100vh) rotate(360deg); }
+    }
+    
+    @keyframes blink-caret {
+        from, to { border-color: transparent; }
+        50% { border-color: currentColor; }
+    }
+    
+    /* Correction de l'animation typing */
+    .typing-text {
+        font-family: 'Space Mono', monospace;
+        font-size: 1.3rem;
+        margin: 20px 0;
+        min-height: 60px;
+        /* Supprimer les animations CSS par défaut qui causent des conflits */
+    }
+    
+    .typing-text-active {
+        font-family: 'Space Mono', monospace;
+        font-size: 1.3rem;
+        margin: 20px 0;
+        min-height: 60px;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid currentColor;
     }
 `;
 document.head.appendChild(style);
