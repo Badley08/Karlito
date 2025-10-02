@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karl Brad Luberisse | Full Stack Developer</title>
+    <meta name="description" content="Portfolio professionnel de Karl Brad Luberisse, développeur Full Stack spécialisé en JavaScript, Python et développement web moderne.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .theme-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Dark mode par défaut */
+        :root {
+            color-scheme: dark;
+        }
+        
+        /* Animations personnalisées */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* Effet de survol sur les cartes */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+        }
+        
+        /* Scroll personnalisé */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+        
+        /* Effet de gradient sur le texte */
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Mode clair */
+        .light-mode {
+            background: #ffffff;
+            color: #1f2937;
+        }
+        
+        .light-mode ::-webkit-scrollbar-track {
+            background: #f3f4f6;
+        }
+        
+        .light-mode ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 theme-transition">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-gray-950/80 backdrop-blur-lg border-b border-gray-800 theme-transition" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="text-xl font-bold gradient-text">Karlito</a>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="hover:text-blue-500 theme-transition">À propos</a>
+                    <a href="#skills" class="hover:text-blue-500 theme-transition">Compétences</a>
+                    <a href="#projects" class="hover:text-blue-500 theme-transition">Projets</a>
+                    <a href="#certifications" class="hover:text-blue-500 theme-transition">Certifications</a>
+                    <a href="#contact" class="hover:text-blue-500 theme-transition">Contact</a>
+                </div>
+                
+                <!-- Theme Toggle -->
+                <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-gray-800 theme-transition" id="themeToggle">
+                    <i class="fas fa-sun text-xl" id="themeIcon"></i>
+                </button>
+                
+                <!-- Menu Mobile -->
+                <button class="md:hidden p-2" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-gray-900 border-t border-gray-800">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#about" class="block hover:text-blue-500 theme-transition">À propos</a>
+                <a href="#skills" class="block hover:text-blue-500 theme-transition">Compétences</a>
+                <a href="#projects" class="block hover:text-blue-500 theme-transition">Projets</a>
+                <a href="#certifications" class="block hover:text-blue-500 theme-transition">Certifications</a>
+                <a href="#contact" class="block hover:text-blue-500 theme-transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-4 pt-16">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8 animate-fadeInUp">
+                <img src="karlito.jpg" alt="Karl Brad Luberisse" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500 shadow-lg shadow-blue-500/50" onerror="this.style.display='none'">
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fadeInUp">
+                Hi, I'm <span class="gradient-text">Karl Brad</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 mb-8 animate-fadeInUp" style="animation-delay: 0.1s;">
+                Full Stack Developer & Digital Innovator
+            </p>
+            <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-12 animate-fadeInUp" style="animation-delay: 0.2s;">
+                Passionné par la technologie et l'innovation numérique, je crée des expériences web modernes et performantes.
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center animate-fadeInUp" style="animation-delay: 0.3s;">
+                <a href="#projects" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold theme-transition">
+                    Voir mes projets
+                </a>
+                <a href="#contact" class="px-8 py-3 border border-gray-700 hover:border-blue-500 rounded-lg font-semibold theme-transition">
+                    Me contacter
+                </a>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="flex justify-center gap-6 mt-12 animate-fadeInUp" style="animation-delay: 0.4s;">
+                <a href="https://github.com/Badley08" target="_blank" class="text-2xl hover:text-blue-500 theme-transition">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:karlluberisse1308@gmail.com" class="text-2xl hover:text-blue-500 theme-transition">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://badley08.github.io/LinkNest" target="_blank" class="text-2xl hover:text-blue-500 theme-transition">
+                    <i class="fas fa-globe"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 bg-gray-900/50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center">À propos de moi</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="karlito.jpg" alt="Karl Brad" class="rounded-2xl shadow-2xl w-full" onerror="this.src='https://via.placeholder.com/500x600/1f2937/3b82f6?text=Karl+Brad'">
+                </div>
+                <div class="space-y-6">
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        Je suis <span class="text-blue-500 font-semibold">Karl Brad Luberisse</span>, plus connu sous le nom de <span class="text-blue-500 font-semibold">Karlito</span>. À 16 ans, je suis un développeur Full Stack passionné par la création d'applications web innovantes et performantes.
+                    </p>
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        Je maîtrise les technologies modernes comme <span class="text-blue-500 font-semibold">Python, JavaScript, HTML/CSS</span>, et j'adore travailler dans des environnements <span class="text-blue-500 font-semibold">Linux</span>.
+                    </p>
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        Mon objectif est de devenir un développeur complet, capable de concevoir des solutions élégantes qui résolvent des problèmes réels.
+                    </p>
+                    <div class="flex items-center gap-4 pt-4">
+                        <div class="px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                            <span class="text-blue-500 font-semibold">16 ans</span>
+                        </div>
+                        <div class="px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                            <span class="text-blue-500 font-semibold">Full Stack Developer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center">Compétences Techniques</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Frontend -->
+                <div class="p-8 bg-gray-900/50 rounded-2xl border border-gray-800 card-hover">
+                    <div class="text-4xl mb-4 text-blue-500">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Frontend</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> HTML5 & CSS3
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> JavaScript ES6+
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> Tailwind CSS
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> Responsive Design
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Backend -->
+                <div class="p-8 bg-gray-900/50 rounded-2xl border border-gray-800 card-hover">
+                    <div class="text-4xl mb-4 text-blue-500">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Backend</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> Python (Flask, Django)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> Node.js
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> REST APIs
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> SQLite & Databases
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Tools -->
+                <div class="p-8 bg-gray-900/50 rounded-2xl border border-gray-800 card-hover">
+                    <div class="text-4xl mb-4 text-blue-500">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Outils & Env</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> Linux (Arch, Ubuntu)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> Git & GitHub
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> Terminal & Bash
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-blue-500"></i> VS Code
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 bg-gray-900/50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-4 text-center">Projets Réalisés</h2>
+            <p class="text-center text-gray-400 mb-12">Découvrez mes dernières créations et expérimentations</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project Cards -->
+                <div class="bg-gray-900/50 rounded-xl border border-gray-800 overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-folder text-3xl text-blue-500"></i>
+                            <a href="https://github.com/Badley08/MyLore" target="_blank" class="text-gray-400 hover:text-blue-500">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">MyLore</h3>
+                        <p class="text-gray-400 mb-4">Application de gestion de contenu personnel avec JavaScript</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/10 text-blue-500 rounded-full text-sm">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 rounded-xl border border-gray-800 overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-folder text-3xl text-blue-500"></i>
+                            <a href="https://github.com/Badley08/Eduzen" target="_blank" class="text-gray-400 hover:text-blue-500">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Eduzen</h3>
+                        <p class="text-gray-400 mb-4">Plateforme éducative interactive pour l'apprentissage en ligne</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/10 text-blue-500 rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-green-500/10 text-green-500 rounded-full text-sm">Education</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 rounded-xl border border-gray-800 overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-folder text-3xl text-blue-500"></i>
+                            <a href="https://github.com/Badley08/ConvertPro" target="_blank" class="text-gray-400 hover:text-blue-500">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">ConvertPro</h3>
+                        <p class="text-gray-400 mb-4">Convertisseur universel d'unités et de devises</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/10 text-blue-500 rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full text-sm">⭐ 1</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 rounded-xl border border-gray-800 overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-folder text-3xl text-blue-500"></i>
+                            <a href="https://github.com/Badley08/Quizzy" target="_blank" class="text-gray-400 hover:text-blue-500">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Quizzy</h3>
+                        <p class="text-gray-400 mb-4">Quiz multilingue en français, anglais et espagnol</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/10 text-blue-500 rounded-full text-sm">HTML</span>
+                            <span class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full text-sm">⭐ 1</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 rounded-xl border border-gray-800 overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-folder text-3xl text-blue-500"></i>
+                            <a href="https://github.com/Badley08/Link-Us" target="_blank" class="text-gray-400 hover:text-blue-500">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Link-Us</h3>
+                        <p class="text-gray-400 mb-4">Application de chat en temps réel avec Socket.io</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/10 text-blue-500 rounded-full text-sm">CSS</span>
+                            <span class="px-3 py-1 bg-purple-500/10 text-purple-500 rounded-full text-sm">Socket.io</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 rounded-xl border border-gray-800 overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-folder text-3xl text-blue-500"></i>
+                            <a href="https://github.com/Badley08/SecretVault" target="_blank" class="text-gray-400 hover:text-blue-500">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">SecretVault</h3>
+                        <p class="text-gray-400 mb-4">Gestionnaire de mots de passe sécurisé</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/10 text-blue-500 rounded-full text-sm">HTML</span>
+                            <span class="px-3 py-1 bg-red-500/10 text-red-500 rounded-full text-sm">Security</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://github.com/Badley08?tab=repositories" target="_blank" class="inline-flex items-center gap-2 px-8 py-3 border border-gray-700 hover:border-blue-500 rounded-lg font-semibold theme-transition">
+                    Voir tous les projets sur GitHub
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-4 text-center">Certifications</h2>
+            <p class="text-center text-gray-400 mb-12">Mes accomplissements et formations</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-900/50 rounded-2xl border border-gray-800 overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                        <img src="html.png" alt="HTML Certificate" class="w-32 h-32 object-contain" onerror="this.parentElement.innerHTML='<i class=\'fas fa-certificate text-6xl text-white\'></i>'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">HTML5 Certification</h3>
+                        <p class="text-gray-400">Maîtrise avancée du HTML5 et des standards web modernes</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 rounded-2xl border border-gray-800 overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
+                        <img src="css.png" alt="CSS Certificate" class="w-32 h-32 object-contain" onerror="this.parentElement.innerHTML='<i class=\'fas fa-certificate text-6xl text-white\'></i>'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">CSS3 Certification</h3>
+                        <p class="text-gray-400">Expertise en CSS3, animations et responsive design</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 rounded-2xl border border-gray-800 overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
+                        <img src="ai-research.png" alt="AI Research Certificate" class="w-32 h-32 object-contain" onerror="this.parentElement.innerHTML='<i class=\'fas fa-certificate text-6xl text-white\'></i>'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">AI Research</h3>
+                        <p class="text-gray-400">Formation en intelligence artificielle et recherche</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-gray-900/50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-4">Travaillons Ensemble</h2>
+            <p class="text-gray-400 mb-12">Vous avez un projet en tête ? Discutons-en !</p>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <a href="mailto:karlluberisse1308@gmail.com" class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500 theme-transition">
+                    <i class="fas fa-envelope text-3xl text-blue-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Email</h3>
+                    <p class="text-gray-400 text-sm">karlluberisse1308@gmail.com</p>
+                </a>
+                
+                <a href="https://github.com/Badley08" target="_blank" class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500 theme-transition">
+                    <i class="fab fa-github text-3xl text-blue-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">GitHub</h3>
+                    <p class="text-gray-400 text-sm">github.com/Badley08</p>
+                </a>
+                
+                <a href="https://badley08.github.io/LinkNest" target="_blank" class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500 theme-transition">
+                    <i class="fas fa-link text-3xl text-blue-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Tous mes sites</h3>
+                    <p class="text-gray-400 text-sm">LinkNest</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400">&copy; 2025 Karl Brad Luberisse. Tous droits réservés.</p>
+            <p class="text-gray-500 text-sm mt-2">Conçu et développé avec passion</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button onclick="scrollToTop()" id="scrollTopBtn" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center shadow-lg theme-transition opacity-0 pointer-events-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Theme Toggle
+        let isDarkMode = true;
+        
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const body = document.body;
+            const navbar = document.getElementById('navbar');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (isDarkMode) {
+                body.classList.remove('light-mode');
+                body.classList.add('bg-gray-950', 'text-gray-100');
+                body.classList.remove('bg-white', 'text-gray-900');
+                navbar.classList.remove('bg-white/80', 'border-gray-200');
+                navbar.classList.add('bg-gray-950/80', 'border-gray-800');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                body.classList.add('light-mode');
+                body.classList.remove('bg-gray-950', 'text-gray-100');
+                body.classList.add('bg-white', 'text-gray-900');
+                navbar.classList.add('bg-white/80', 'border-gray-200');
+                navbar.classList.remove('bg-gray-950/80', 'border-gray-800');
+                themeIcon.classList.add('fa-moon');
+                themeIcon.classList.remove('fa-sun');
+            }
+        }
+        
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/Hide Scroll to Top Button
+        window.addEventListener('scroll', function() {
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                scrollTopBtn.classList.add('opacity-100');
+            } else {
+                scrollTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                scrollTopBtn.classList.remove('opacity-100');
+            }
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = isDarkMode ? 'rgba(3, 7, 18, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+            } else {
+                navbar.style.background = isDarkMode ? 'rgba(3, 7, 18, 0.8)' : 'rgba(255, 255, 255, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
